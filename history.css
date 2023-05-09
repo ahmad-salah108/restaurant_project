@@ -1,0 +1,70 @@
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background: url(./image/patrick-tomasso-GXXYkSwndP4-unsplash.jpg);
+   			background-size: cover;
+    		background-position: top;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			opacity: 0.8;
+		}
+		h1 {
+			text-align: center;
+			margin-bottom: 20px;
+			color: white;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 20px;
+		}
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #f2f2f2;
+			font-weight: bold;
+		}
+		.order {
+			background-color: #fff6d9;
+			padding: 20px;
+			margin-bottom: 20px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+		}
+		.order h2 {
+			margin-top: 0;
+		}
+		.order p {
+			margin-bottom: 10px;
+		}
+		.order ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.order li {
+			margin-bottom: 5px;
+		}
+		tbody{
+			background-color: white;
+		}
+		button{
+			border-radius: 9px;
+			padding: 8px 40px;
+			border: none;
+			background-color:  rgb(17, 17, 175);;
+		}
+		button a{
+			font-family: Arial, sans-serif;
+		}
+
+		button[type="submit"]:hover {
+			background-color:  red;
+		  }
