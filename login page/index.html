@@ -24,15 +24,15 @@
       <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
       <div class="from-box login">
         <h2>Login</h2>
-        <form action="../Home.html">
+        <form id="login-form">
           <div class="input-box">
             <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" required />
+            <input id="login-email" type="email" required />
             <label>email</label>
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required />
+            <input id="login-password" type="password" required />
             <label>password</label>
           </div>
           <div class="remember-forgot">
@@ -51,7 +51,7 @@
 
       <div class="from-box register">
         <h2>Register</h2>
-        <form action="#">
+        <form id="register-form">
           <div class="input-box">
             <span class="icon"><ion-icon name="person"></ion-icon></span>
             <input type="text" required />
@@ -59,12 +59,12 @@
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" required />
+            <input id="register-email" type="email" required />
             <label>email</label>
           </div>
           <div class="input-box">
             <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required />
+            <input id="register-password" type="password" required />
             <label>password</label>
           </div>
           <div class="remember-forgot">
@@ -94,8 +94,68 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
 
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { 
+        getAuth,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+       } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
-    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBgWa3vEHptBdhU6tMIAFin9lDCT_JjJho",
+        authDomain: "restaurant-756b8.firebaseapp.com",
+        projectId: "restaurant-756b8",
+        storageBucket: "restaurant-756b8.appspot.com",
+        messagingSenderId: "184187148578",
+        appId: "1:184187148578:web:b830a7c1ad400b8c8f6d7b",
+        measurementId: "G-CSKJ4FY7CM"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app)
+
+      auth.onAuthStateChanged(user => {
+        console.log(user)
+      })
+
+      // HANDLE REGISTER
+      const handleRegister = (event)=>{
+        event.preventDefault();
+        createUserWithEmailAndPassword(auth, document.querySelector('#register-email').value, document.querySelector('#register-password').value)
+        .then(res => {
+          console.log(res)
+          window.localStorage.setItem('restaurant_user', res.user.uid)
+          window.location.href = `file:///C:/Users/Ahmad/Desktop/restaurant/restaurant_project/Home.html`
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+      document.querySelector('#register-form').addEventListener('submit', handleRegister)
+      
+      // HANDLE LOGIN
+      const handleLogin = (event)=>{
+        event.preventDefault();
+        signInWithEmailAndPassword(auth, document.querySelector('#login-email').value, document.querySelector('#login-password').value)
+        .then(res => {
+          console.log(res)
+          window.localStorage.setItem('restaurant_user', res.user.uid)
+          window.location.href = `file:///C:/Users/Ahmad/Desktop/restaurant/restaurant_project/Home.html`
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+      document.querySelector('#login-form').addEventListener('submit', handleLogin)
+
+    </script>
   </body>
 
   
